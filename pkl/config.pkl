@@ -1,0 +1,39 @@
+amends  "MemoryConfig.pkl"
+
+layouts {
+  ["nRF52805"] {
+    bootLoaderAddr = 0x00000000
+    bootLoaderSettAddr = 0x00000000
+    appAreaAddr = 0x00000000
+  }
+  ["nRF52810"] {
+    bootLoaderAddr = 0x00028000
+    bootLoaderSettAddr = 0x0002F000
+    appAreaAddr = 0x00019000
+  }
+  ["nRF52811"] {
+    bootLoaderAddr = 0x00000000
+    bootLoaderSettAddr = 0x00000000
+    appAreaAddr = 0x00000000
+  }
+  ["nRF52820"] {
+    bootLoaderAddr = 0x00000000
+    bootLoaderSettAddr = 0x00000000
+    appAreaAddr = 0x00000000
+  }
+  ["nRF52832"] {
+    bootLoaderAddr = 0x00078000
+    bootLoaderSettAddr = 0x0007F000
+    appAreaAddr = 0x00026000
+  }
+  ["nRF52833"] {
+    bootLoaderAddr = 0x00078000
+    bootLoaderSettAddr = 0x0007F000
+    appAreaAddr = 0x00027000
+  }
+  ["nRF52840"] {
+    bootLoaderAddr = 0x000F8000
+    bootLoaderSettAddr = 0x000FF000
+    appAreaAddr = 0x00027000
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "signatures": [
+    {
+      "sdkVersion": "17.1.0",
+      "hashes": [
+        {
+          "softDevice": "S112",
+          "signature": "d290e826ebbbd2ba8f798584aec9fd16c76aa684d8365d26ec9172ed03b5cf45"
+        },
+        {
+          "softDevice": "S113",
+          "signature": "84ab4587021b85be4a89aecd5726a6594d656e019bb0ab74943d5db9af3c762e"
+        },
+        {
+          "softDevice": "S122",
+          "signature": "1ead055f91878165d7234a956d59c67f194514213dd939ce9e330be74f5da7e0"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "cc120f7b78e9d9439cd40b9b2ddb56f426759eba44011bb7cb359c7e1e4b6f94"
+        },
+        {
+          "softDevice": "S140",
+          "signature": "6c541d56f4dc02190657847bba30b80f2f9136e5cd88bc636fedc7832659507a"
+        }
+      ]
+    },
+    {
+      "sdkVersion": "17.0.2",
+      "hashes": [
+        {
+          "softDevice": "S112",
+          "signature": "d290e826ebbbd2ba8f798584aec9fd16c76aa684d8365d26ec9172ed03b5cf45"
+        },
+        {
+          "softDevice": "S113",
+          "signature": "84ab4587021b85be4a89aecd5726a6594d656e019bb0ab74943d5db9af3c762e"
+        },
+        {
+          "softDevice": "S122",
+          "signature": "1ead055f91878165d7234a956d59c67f194514213dd939ce9e330be74f5da7e0"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "cc120f7b78e9d9439cd40b9b2ddb56f426759eba44011bb7cb359c7e1e4b6f94"
+        },
+        {
+          "softDevice": "S140",
+          "signature": "6c541d56f4dc02190657847bba30b80f2f9136e5cd88bc636fedc7832659507a"
+        }
+      ]
+    },
+    {
+      "sdkVersion": "16.0.0",
+      "hashes": [
+        {
+          "softDevice": "S112",
+          "signature": "22e6d382ad9a9800dd9e5b5f8365e6231bbe816cf6f24851ee2af1f197300303"
+        },
+        {
+          "softDevice": "S113",
+          "signature": "bcd4d2360ef376520bdf83db700914c897aa7ff006599701561bdbb4c3344db6"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "2cfb182e8784fdae131f6fba349c4988a70f75743ea22570bc7688038dc96e4f"
+        },
+        {
+          "softDevice": "S140",
+          "signature": "c10c15d4a7e3d75b33b1a17e910c0c2ab18b3cf7daa327edc46efba2c84b818d"
+        }
+      ]
+    },
+    {
+      "sdkVersion": "15.3.0",
+      "hashes": [
+        {
+          "softDevice": "S112",
+          "signature": "c3079abf6ed3e6c3bba17d66c422e6e1ccbe23d3119815ac1fe853bc2acf4190"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "12f1b46facd55f22a40e3c2fb8361c9cee491661497d711b581887b09164fafe"
+        },
+        {
+          "softDevice": "S140",
+          "signature": "26f7ac3f40bd39617b39ebe5bac1c1689ff66b20bf62b01a347b71164129674a"
+        }
+      ]
+    },
+    {
+      "sdkVersion": "15.2.0",
+      "hashes": [
+        {
+          "softDevice": "S112",
+          "signature": "c3079abf6ed3e6c3bba17d66c422e6e1ccbe23d3119815ac1fe853bc2acf4190"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "12f1b46facd55f22a40e3c2fb8361c9cee491661497d711b581887b09164fafe"
+        },
+        {
+          "softDevice": "S140",
+          "signature": "26f7ac3f40bd39617b39ebe5bac1c1689ff66b20bf62b01a347b71164129674a"
+        }
+      ]
+    },
+    {
+      "sdkVersion": "15.1.0",
+      "hashes": [
+        {
+          "softDevice": "S140",
+          "signature": "f0fd7090b6f4216d7a797e3edf6da44cf688d301ec83cab7f1b7bb61f9a3d293"
+        },
+        {
+          "softDevice": "S112",
+          "signature": "97353618327ea096cd4741a4fe02d65d99095718ddc457cd05f7509b7e1b225f"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "6ebbe45f66ab04526bf950c66c7becdce136dec5f318219b9b68278b83e000d4"
+        }
+      ]
+    },
+    {
+      "sdkVersion": "15.0.0",
+      "hashes": [
+        {
+          "softDevice": "S112",
+          "signature": "d2d1ab95596950f0589c904fefb51b399bddebdd5723d386ba2fccf17229e93f"
+        },
+        {
+          "softDevice": "S132",
+          "signature": "59400d35ef8fbe557f596db6d803cea856fa113c8b734e2ee6d582876fdf36f5"
+        },
+        {
+          "softDevice": "S140",
+          "signature": "b792ada82d41f0166f054cfe767c22dbab4db3831870354ae1f0366afcbc1785"
+        }
+      ]
+    }
+  ]
+}

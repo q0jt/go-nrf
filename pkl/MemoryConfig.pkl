@@ -1,0 +1,25 @@
+/// nRF Memory layout Data
+
+@go.Package { name = "github.com/q0jt/go-nrf/nrf/config" }
+module MemoryConfig
+
+import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.6.0#/go.pkl"
+
+typealias address = UInt32(isBetween(0, 0x100000))
+
+class MemoryLayout {
+  /// Bootloader start address
+  bootLoaderAddr: address
+
+  /// Bootloader Settings start address
+  bootLoaderSettAddr: address
+
+  /// Application Area start address
+  /// Includes free space
+  appAreaAddr: address
+}
+
+typealias Arch = "nRF52805"|"nRF52810"|"nRF52811"|"nRF52820"|"nRF52832"|"nRF52833"|"nRF52840"
+
+/// nRF Architecture, MemoryLayout
+layouts: Mapping<Arch, MemoryLayout>
