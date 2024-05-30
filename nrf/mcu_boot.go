@@ -14,7 +14,7 @@ type MCUBootImgHeader struct {
 	LoadAddr         uint32
 	Size             uint16
 	ProtectedTLVSize uint16
-	IncImgSize       uint32
+	ImgSize          uint32
 	Flags            uint32
 	Ver              ImgVersion
 	Pad              uint32
@@ -123,8 +123,8 @@ func (b *MCUBoot) Header() *MCUBootImgHeader {
 	return b.header
 }
 
-func (b *MCUBoot) DumpApp() ([]byte, error) {
-	out := make([]byte, b.header.IncImgSize)
+func (b *MCUBoot) ExtractImage() ([]byte, error) {
+	out := make([]byte, b.header.ImgSize)
 	_, err := b.r.ReadAt(out, b.base+int64(b.header.Size))
 	if err != nil {
 		return nil, err
@@ -143,7 +143,7 @@ type TLVArea struct {
 }
 
 func (b *MCUBoot) ReadTLVArea() (*TLVArea, error) {
-	offset := b.base + int64(b.header.Size) + int64(b.header.IncImgSize)
+	offset := b.base + int64(b.header.Size) + int64(b.header.ImgSize)
 	b.offset = offset
 	ti := make([]byte, 4)
 	_, err := b.r.ReadAt(ti, b.offset)
