@@ -110,13 +110,11 @@ func findMCUBootImageMagic(b []byte) []int64 {
 	return r
 }
 
-func isMCUBootImageHeader(b []byte, offset int64) bool {
-	s := offset + 0x20
-	data := b[s : s+0x1e0]
-	if !bytes.Equal(data, bytes.Repeat([]byte{0xFF}, 0x1e0)) {
-		return false
-	}
-	return true
+func isMCUBootImageHeader(b []byte, off int64) bool {
+	offset := off + 0x20
+	data := b[offset : offset+0x1E0]
+	pad := bytes.Repeat([]byte{0xFF}, 0x1E0)
+	return bytes.Equal(data, pad)
 }
 
 func (b *MCUBoot) Header() *MCUBootImgHeader {
@@ -124,12 +122,12 @@ func (b *MCUBoot) Header() *MCUBootImgHeader {
 }
 
 func (b *MCUBoot) ExtractImage() ([]byte, error) {
-	out := make([]byte, b.header.ImgSize)
-	_, err := b.r.ReadAt(out, b.base+int64(b.header.Size))
+	img := make([]byte, b.header.ImgSize)
+	_, err := b.r.ReadAt(img, b.base+int64(b.header.Size))
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return img, nil
 }
 
 func (b *MCUBoot) seek(x int64) {
