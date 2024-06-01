@@ -20,6 +20,15 @@ type MCUBootImgHeader struct {
 	Pad              uint32
 }
 
+var imageFlags = map[string]uint32{
+	"Pic":             0x00000001, // Not supported.
+	"EncryptedAes128": 0x00000004, // Encrypted using AES128.
+	"EncryptedAes256": 0x00000008, // Encrypted using AES256.
+	"NonBootable":     0x00000010, // Split image app.
+	"RamLoad":         0x00000020,
+	"RomFixed":        0x00000100,
+}
+
 type ImgVersion struct {
 	Major    uint8
 	Minor    uint8
@@ -56,6 +65,7 @@ const (
 	ImageTLVEncX25519     TLVType = 0x33 // Key encrypted with ECIES-X25519
 	ImageTLVEncDependency TLVType = 0x40 // Image depends on other image
 	ImageTLVEncSecCnt     TLVType = 0x50 // security counter
+	ImageBootRecord       TLVType = 0x60 // measured boot record
 )
 
 type MCUBoot struct {
@@ -119,6 +129,25 @@ func isMCUBootImageHeader(b []byte, off int64) bool {
 
 func (b *MCUBoot) Header() *MCUBootImgHeader {
 	return b.header
+}
+
+func (m *MCUBootImgHeader) checkFlags() []string {
+	flags := make([]string, 0)
+	for k, v := range imageFlags {
+		if m.Flags&v != 0 {
+			flags = append(flags, k)
+		}
+	}
+	return flags
+}
+
+func (m *MCUBootImgHeader) IsEncrypted() bool {
+	for _, s := range m.checkFlags() {
+		if s == "EncryptedAes128" || s == "EncryptedAes256" {
+			return true
+		}
+	}
+	return false
 }
 
 func (b *MCUBoot) ExtractImage() ([]byte, error) {
