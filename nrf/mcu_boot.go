@@ -163,6 +163,7 @@ func (b *MCUBoot) ReadTLVArea() (*TLVArea, error) {
 		// TODO: parse protectedTLVs
 		fmt.Println("Protected!!!")
 	}
+	b.seek(4)
 	h, t, err := b.readTLVAreaInfo()
 	if t != ImageTLVSHA256 {
 		return nil, errors.New("mcu-boot: invalid tlv hash")
@@ -184,7 +185,6 @@ func (b *MCUBoot) ReadTLVArea() (*TLVArea, error) {
 
 func (b *MCUBoot) readTLVAreaInfo() ([]byte, TLVType, error) {
 	it := make([]byte, 4)
-	b.seek(4)
 	if _, err := b.r.ReadAt(it, b.offset); err != nil {
 		return nil, -1, err
 	}
@@ -194,8 +194,9 @@ func (b *MCUBoot) readTLVAreaInfo() ([]byte, TLVType, error) {
 	if err != nil {
 		return nil, -1, err
 	}
+	b.seek(4)
 	out := make([]byte, tlv.ItSize)
-	if _, err := b.r.ReadAt(out, b.offset+4); err != nil {
+	if _, err := b.r.ReadAt(out, b.offset); err != nil {
 		return nil, -1, err
 	}
 	b.seek(int64(tlv.ItSize))
