@@ -20,7 +20,7 @@ func DetectSDKVersion(r io.ReaderAt) (string, error) {
 		return "", err
 	}
 	enc := hex.EncodeToString(sig)
-	s, err := readJson("nrf/signature.json")
+	s, err := readJson("nrf/sig/signature.json")
 	if err != nil {
 		return "", err
 	}
@@ -72,7 +72,7 @@ func readJson(name string) (*SDKSignatures, error) {
 }
 
 func writeJson(version string, h []Hash) error {
-	s, err := readJson("nrf/signature.json")
+	s, err := readJson("nrf/sig/signature.json")
 	if err != nil {
 		return err
 	}
@@ -84,7 +84,7 @@ func writeJson(version string, h []Hash) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile("nrf/signature.json", b, 0644)
+	return os.WriteFile("nrf/sig/signature.json", b, 0644)
 }
 
 func GenSignatureFromSDK(name, version string) ([]Hash, error) {

@@ -28,7 +28,7 @@ func DumpVerifyingKey(b []byte) ([]byte, error) {
 		}
 		return key, nil
 	}
-	return nil, errors.New("verify key not found")
+	return nil, errors.New("verifying key not found")
 }
 
 func getVerifyingKeySize(suite string) int {
