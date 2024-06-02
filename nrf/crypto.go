@@ -4,6 +4,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/elliptic"
+	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
 	"encoding/pem"
@@ -101,6 +102,14 @@ func loadKeyFromPem(b []byte) (any, error) {
 		return nil, errors.New("invalid block or block type")
 	}
 	key, err := x509.ParsePKIXPublicKey(block.Bytes)
+	if err != nil {
+		return nil, err
+	}
+	return key, nil
+}
+
+func loadRsaKey(b []byte) (*rsa.PublicKey, error) {
+	key, err := x509.ParsePKCS1PublicKey(b)
 	if err != nil {
 		return nil, err
 	}
