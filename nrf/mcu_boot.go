@@ -2,6 +2,7 @@ package nrf
 
 import (
 	"bytes"
+	"crypto/subtle"
 	"encoding/binary"
 	"errors"
 	"fmt"
@@ -228,4 +229,13 @@ func (b *MCUBoot) readTLVAreaInfo() ([]byte, TLVType, error) {
 	}
 	b.seek(int64(tlv.ItSize))
 	return out, TLVType(tlv.ItType), nil
+}
+
+func (a *TLVArea) VerifyPK(key []byte) bool {
+	size := len(key)
+	if size != 0x18e && size != 0x10e && size != 0x78 && size != 0x5b && size != 0x2c {
+		return false
+	}
+	h := sha256Sum(key)
+	return subtle.ConstantTimeCompare(h, a.KeyHash) != 0
 }
