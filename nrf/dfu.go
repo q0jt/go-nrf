@@ -79,13 +79,24 @@ type DfuContents struct {
 	Manifest Manifest `json:"manifest"`
 }
 
-type Manifest struct {
-	App Application `json:"application"`
+type Application struct {
+	BinFile string `json:"bin_file,omitempty"`
+	DatFile string `json:"dat_file,omitempty"`
 }
 
-type Application struct {
-	BinFile string `json:"bin_file"`
-	DatFile string `json:"dat_file"`
+type InfoReadOnlyMetadata struct {
+	BlSize int `json:"bl_size,omitempty"`
+	SdSize int `json:"sd_size,omitempty"`
+}
+
+type SdBootloader struct {
+	BinFile              string               `json:"bin_file,omitempty"`
+	DatFile              string               `json:"dat_file,omitempty"`
+	InfoReadOnlyMetadata InfoReadOnlyMetadata `json:"info_read_only_metadata,omitempty"`
+}
+type Manifest struct {
+	App          Application  `json:"application,omitempty"`
+	SdBootloader SdBootloader `json:"softdevice_bootloader,omitempty"`
 }
 
 func parseManifest(f fs.File) (*DfuContents, error) {
