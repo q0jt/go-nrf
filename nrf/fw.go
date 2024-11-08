@@ -136,20 +136,25 @@ func marshalAttr(b []byte) (*DfuSettingAttrs, error) {
 	return st, nil
 }
 
+type BankImage struct {
+	Size uint32
+	Crc  uint32
+	Code uint32
+}
+
 type DfuSettingAttrs struct {
-	Crc          uint32
-	Version      uint32
-	AppVersion   uint32
-	BlVersion    uint32
-	BankLayout   uint32
-	BankCr       uint32
-	Bank0ImgSize uint32
-	Bank0ImgCrc  uint32
-	Bank0Code    uint32
-	Reserve      [12]uint8
+	Crc         uint32
+	Version     uint32
+	AppVersion  uint32
+	BlVersion   uint32
+	BankLayout  uint32
+	BankCurrent uint32
+	Bank0Img    BankImage
+	Bank1Img    BankImage
+	WriteOffset uint32
 	// soft device size
-	SdSize   uint32
-	Reserve2 [40]uint8
+	SdSize  uint32
+	Reserve [32]uint8
 }
 
 func getDfuSetting(b []byte) (*DfuSettingAttrs, error) {
@@ -164,7 +169,7 @@ func getDfuSetting(b []byte) (*DfuSettingAttrs, error) {
 
 func (a *DfuSettingAttrs) checkCrc(b []byte) error {
 	if len(b) != 0x5c {
-		return errors.New("invalid data length")
+		return errors.New("invalid DFU settings size")
 	}
 	if a.Version != 1 && a.Version != 2 {
 		return errors.New("invalid settings version")
@@ -178,12 +183,12 @@ func (a *DfuSettingAttrs) checkCrc(b []byte) error {
 }
 
 func (a *DfuSettingAttrs) extractApp(r io.ReaderAt, off int64) ([]byte, error) {
-	b := make([]byte, a.Bank0ImgSize)
+	b := make([]byte, a.Bank0Img.Size)
 	if _, err := r.ReadAt(b, off); err != nil {
 		return nil, err
 	}
 	crc := crc32.ChecksumIEEE(b)
-	if crc != a.Bank0ImgCrc {
+	if crc != a.Bank0Img.Crc {
 		return nil, invalidCrc
 	}
 	return b, nil
